@@ -1,0 +1,42 @@
+/*body[data-path=login],body[frappe-session-status=logged-out] { 
+    background-color: #494A9A;
+}
+
+body[data-path=login] nav.navbar,body[frappe-session-status=logged-out] nav.navbar{
+    display: none!Important;
+}
+
+.form-signin .form-control { 
+    height: 45px!important; 
+    font-size: 18px!important; 
+}
+.web-footer { 
+    display: none!important;
+}
+.page-card .page-card-head .indicator {
+    color: #36414C;
+    font-size: 18px;
+}
+.login-content .btn {
+    font-size: 18px!important;
+    text-transform: uppercase!important;
+    padding: 12px 15px!important;
+}
+.form-footer, .form-footer a, .form-footer h6 {
+    font-size: 16px!important;
+    color: #fff!important;
+    font-weight: bold;
+}
+div#page-login { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+div#page-login .page_content > div {
+    width: 360px;
+}
+
+
+*/

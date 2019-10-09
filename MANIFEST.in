@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include bhposapp *.css
+recursive-include bhposapp *.csv
+recursive-include bhposapp *.html
+recursive-include bhposapp *.ico
+recursive-include bhposapp *.js
+recursive-include bhposapp *.json
+recursive-include bhposapp *.md
+recursive-include bhposapp *.png
+recursive-include bhposapp *.py
+recursive-include bhposapp *.svg
+recursive-include bhposapp *.txt
+recursive-exclude bhposapp *.pyc
