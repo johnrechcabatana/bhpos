@@ -1,9 +1,22 @@
-/*body[data-path=login],body[frappe-session-status=logged-out] { 
+body[data-path=login],body[frappe-session-status=logged-out] { 
     background-color: #494A9A;
 }
 
 body[data-path=login] nav.navbar,body[frappe-session-status=logged-out] nav.navbar{
     display: none!Important;
+}
+body[frappe-session-status=logged-out]  div#page-message .mb-5, 
+body[frappe-session-status=logged-out]  div#page-message .my-5 {
+    margin-bottom: 0rem !important;
+    margin-top: 0rem !important;
+    min-height: 960px; 
+} 
+body[frappe-session-status=logged-out] div#page-message { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
 }
 
 .form-signin .form-control { 
@@ -38,5 +51,4 @@ div#page-login .page_content > div {
     width: 360px;
 }
 
-test
-*/
+
