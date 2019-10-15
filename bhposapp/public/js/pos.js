@@ -674,8 +674,10 @@ erpnext.pos.PointOfSale = class PointOfSale {
 			this.page.set_secondary_action(__("Print"), async() => {
 				if(this.frm.doc.docstatus != 1 ){
 					await this.frm.save();
+					console.log("test");
 				}
 				this.frm.print_preview.printit(true);
+				console.log("test1");
 			});
 		}
 		if(this.frm.doc.items.length == 0){
@@ -684,6 +686,7 @@ erpnext.pos.PointOfSale = class PointOfSale {
 
 		if (this.frm.doc.docstatus == 1) {
 			this.page.set_primary_action(__("New"), () => {
+				console.log("test2");
 				this.make_new_invoice();
 			});
 			this.page.add_menu_item(__("Email"), () => {
@@ -1082,7 +1085,6 @@ class POSCart {
 	}
 
 	get_item_html(item) {
-		console.log(item);
 		const is_stock_item = this.get_item_details(item.item_code).is_stock_item;
 		const rate = format_currency(item.rate, this.frm.doc.currency);
 		const indicator_class = (!is_stock_item || item.actual_qty >= item.qty) ? 'green' : 'red';
@@ -1487,7 +1489,6 @@ class POSItems {
 		const { item_code, item_name, item_image, actual_qty, end_of_life, size, item_type} = item;
 		const item_title = item_name || item_code;
 		const qty = this.get_item_this(item_code,this.frm.doc.pos_profile);
-		console.log(qty);
 		var classname = 'qty-normal';
 		var act_qty = 0;
 		if (typeof qty === "undefined") {
@@ -1502,10 +1503,10 @@ class POSItems {
 			<div class="pos-item-wrapper image-view-item  ${classname}" data-item-code="${escape(item_code)}"> 
 				<a class="grey list-id" data-name="${item_code}" title="${item_title}">
 					<div class="row">
-						<div class="col-xs-3">${item_title} ~ ${size} </div>
+						<div class="col-xs-3">${item_title} ~ ${size}, ${item_type}</div>
 						<div class="col-xs-3 text-right">${price_list_rate}</div>
 						<div class="col-xs-3 text-center qty-m"><span>${act_qty}<span></div>
-						<div class="col-xs-3 text-center ">${end_of_life} ${item_type} </div>
+						<div class="col-xs-3 text-center ">${end_of_life}  </div>
 					</div>
 				</a> 
 			</div>
