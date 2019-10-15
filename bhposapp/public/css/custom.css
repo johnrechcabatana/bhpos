@@ -9,6 +9,10 @@ body {
 body .container {
     width: 90%;
 }
+body #page-desktop { 
+    height: 100vh;
+    background: #F9F9FA;
+}
 h6.uppercase, .h6.uppercase {
     font-size: 16px;
     font-weight: bold;   
@@ -19,10 +23,115 @@ kbd {
     background-color: #f0f4f7;
 }
 
+.modules-container {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr))!important;
+    min-width: 160px;
+    width: 100%;
+}
+
+.modules-container a.module-box-link {
+    flex: 1;
+    display: inline-block;
+    width: 100%;
+}
+
+.modules-container a.module-box-link {
+    display: inline-block;
+    clear: both;
+    /* flex: none; */
+}
+
+.modules-container a.module-box-link > i {
+    display: inline-block;
+    width: 100%;
+}
+
+.modules-container a.module-box-link > h4 > div i {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-size: 50px!important;
+}
+
+.modules-container a.module-box-link > h4 > div {
+    text-align: center;
+}
+
+.modules-container .border.module-box {
+    padding: 0px!Important;
+}
+
+.modules-container i.fa.fa-check-square-o {
+    color: #c5bb15!important;
+}
+
+.modules-container .inline-block.relative {
+    display: none;
+}
 
 .control-label, .grid-heading-row {
     color: #8d99a6;
     font-size: 16px;
+}
+.border.module-box[data-module-name=Getting] {
+    background: #ddd!important;
+}
+
+i.octicon.octicon-repo {
+    color: #4A4B9C!important;
+}
+
+i.octicon.octicon-tag {
+    color: #19B899!important;
+}
+
+i.octicon.octicon-briefcase {
+    color: #d83434!important;
+}
+
+i.octicon.octicon-package {
+    color: #8d99a6!important;
+}
+
+i.octicon.octicon-database {
+    color: #c5bb15!important;
+}
+
+i.octicon.octicon-rocket {
+    color: #8E44AD!important;
+}
+
+i.octicon.octicon-broadcast {
+    color: #0A993F!important;
+}
+
+i.octicon.octicon-organization {
+    color: #728081!important;
+}
+
+i.octicon.octicon-credit-card {
+    color: #5a4db3!important;
+}
+
+ 
+.modules-container a.module-box-link > h4 > div i {
+    /* color: red!important; */
+}
+
+i.octicon.octicon-calendar {
+    color: #5f0e0e!important;
+}
+
+i.octicon.octicon-settings {
+    color: #bd8516!important;
+}
+
+i.octicon.octicon-globe {
+    color: #4774cc!important;
+}
+
+i.octicon.octicon-device-camera-video {
+    color: #c3c3c3!important;
 }
 /*POINT OF SALE*/
 body[data-route=point-of-sale] {
