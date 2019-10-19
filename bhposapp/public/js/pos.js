@@ -424,6 +424,7 @@ erpnext.pos.PointOfSale = class PointOfSale {
 			events: {
 				submit_form: () => {
 					this.submit_sales_invoice();
+
 				}
 			}
 		});
@@ -458,7 +459,8 @@ erpnext.pos.PointOfSale = class PointOfSale {
 			$(this.frm.msgbox.body).find('.btn-default').on('click', () => {
 				this.frm.msgbox.hide();
 				this.make_new_invoice();
-			})
+			});
+
 		}
 	}
 
@@ -1006,7 +1008,7 @@ class POSCart {
 					if (!this.selected_item.active_field) {
 						frappe.show_alert({
 							indicator: 'red',
-							message: __('Please select a field to edit from numpad')
+							message: __('Please click the Qty, Disc or Rate to edit Quantity field')
 						});
 						return;
 					}
@@ -1049,6 +1051,17 @@ class POSCart {
 	}
 
 	add_item(item) {
+		erpnext.pos.PointOfSale = class PointOfSale {
+			constructor(wrapper) {
+				this.wrapper = $(wrapper).find('.search_field');
+				this.page = wrapper.page;
+				console.log('test');
+			}
+			reset_search_field() {
+					this.search_field.set_value('');
+					this.search_field.$input.trigger("input");
+				}
+		}
 		this.$empty_state.hide();
 
 		if (this.exists(item.item_code, item.batch_no)) {
@@ -1166,7 +1179,6 @@ class POSCart {
 				const $item = $btn.closest('.list-item[data-item-code]');
 				const item_code = unescape($item.attr('data-item-code'));
 				const action = $btn.attr('data-action');
-
 				if(action === 'increment') {
 					events.on_field_change(item_code, 'qty', '+1');
 				} else if(action === 'decrement') {
@@ -1257,12 +1269,12 @@ class POSItems {
 
 	load_items_data() {
 		// bootstrap with 20 items
-		this.get_items()
-			.then(({ items }) => {
-				this.all_items = items;
-				this.items = items;
-				this.render_items(items);
-			});
+		// this.get_items()
+		// 	.then(({ items }) => {
+		// 		this.all_items = items;
+		// 		this.items = items;
+		// 		this.render_items(items);
+		// 	});
 	}
 
 	reset_items() {
@@ -1298,7 +1310,7 @@ class POSItems {
 		this.search_field = frappe.ui.form.make_control({
 			df: {
 				fieldtype: 'Data',
-				label: __('Search Item (Ctrl + i)'),
+				label: __('Search Item'),
 				placeholder: __('Search by item code, serial number, batch no or barcode')
 			},
 			parent: this.wrapper.find('.search-field'),
@@ -1307,7 +1319,9 @@ class POSItems {
 
 		frappe.ui.keys.on('ctrl+i', () => {
 			this.search_field.set_focus();
+			this.search_field.set_value('');
 		});
+
 
 		this.search_field.$input.on('input', (e) => {
 			clearTimeout(this.last_search);
@@ -1437,6 +1451,7 @@ class POSItems {
 	reset_search_field() {
 		this.search_field.set_value('');
 		this.search_field.$input.trigger("input");
+		this.search_field.set_focus();
 	}
 
 	bind_events() {
@@ -1445,7 +1460,11 @@ class POSItems {
 			const $item = $(this);
 			const item_code = unescape($item.attr('data-item-code'));
 			me.events.update_cart(item_code, 'qty', '+1');
+			me.reset_search_field();
+
+
 		});
+
 	}
 
 	get(item_code) {
@@ -1511,7 +1530,6 @@ class POSItems {
 				</a> 
 			</div>
 		`;
-
 		//return template;
 	}
 
@@ -1618,6 +1636,8 @@ class NumberPad {
 		// bind click event
 		const me = this;
 		this.wrapper.on('click', '.num-col', function() {
+			
+
 			const $btn = $(this);
 			const btn_value = $btn.attr('data-value');
 			if (!me.disable_highlight.includes(btn_value)) {
@@ -1632,8 +1652,10 @@ class NumberPad {
 					me.value += btn_value;
 				}
 			}
+
 			me.onclick(btn_value);
 		});
+
 	}
 
 	reset_value() {
@@ -1671,6 +1693,7 @@ class Payment {
 		this.make();
 		this.bind_events();
 		this.set_primary_action();
+
 	}
 
 	open_modal() {
@@ -1701,6 +1724,7 @@ class Payment {
 				if(this.fieldname) {
 					this.dialog.set_value(this.fieldname, this.numpad.get_value());
 				}
+
 			}
 		});
 	}
