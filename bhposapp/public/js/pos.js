@@ -1636,7 +1636,6 @@ class NumberPad {
 		// bind click event
 		const me = this;
 		this.wrapper.on('click', '.num-col', function() {
-			
 
 			const $btn = $(this);
 			const btn_value = $btn.attr('data-value');
