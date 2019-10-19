@@ -277,4 +277,7 @@ li.dropdown.dropdown-energy-points.dropdown-mobile {
 li.dropdown.dropdown-help.dropdown-mobile {
     display: none!Important;
 }
+small, .small {
+    font-size: 100%;
+}
 /*END*/

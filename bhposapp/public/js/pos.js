@@ -1128,7 +1128,7 @@ class POSCart {
 						<button class="btn btn-default btn-xs" data-action="increment">+</button>
 					</span>
 
-					<input class="form-control" type="number" value="${value}">
+					<input class="form-control" type="number" value="${value}" autofocus>
 
 					<span class="input-group-btn">
 						<button class="btn btn-default btn-xs" data-action="decrement">-</button>
@@ -1290,6 +1290,12 @@ class POSItems {
 				</div>
 				<div class="item-group-field">
 				</div>
+			</div>
+			<div class="row">
+                 <div class="col-xs-6" style="color:#fff;font-weight:bold;">Product Name</div>
+                 <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Price</div>
+                 <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Quantity</div>
+                 <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Date Expiry</div>
 			</div>
 			<div class="items-wrapper">
 			</div>
@@ -1522,10 +1528,10 @@ class POSItems {
 			<div class="pos-item-wrapper image-view-item  ${classname}" data-item-code="${escape(item_code)}"> 
 				<a class="grey list-id" data-name="${item_code}" title="${item_title}">
 					<div class="row">
-						<div class="col-xs-3">${item_title} ~ ${strength}, ${item_type}</div>
-						<div class="col-xs-3 text-right">${price_list_rate}</div>
-						<div class="col-xs-3 text-center qty-m"><span>${act_qty}<span></div>
-						<div class="col-xs-3 text-center ">${end_of_life}  </div>
+						<div class="col-xs-6">${item_title}, ${item_type}</div>
+						<div class="col-xs-2 text-right">${price_list_rate}</div>
+						<div class="col-xs-2 text-center qty-m"><span>${act_qty}<span></div>
+						<div class="col-xs-2 text-center ">${end_of_life}  </div>
 					</div>
 				</a> 
 			</div>
