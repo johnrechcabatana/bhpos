@@ -1535,7 +1535,7 @@ class POSItems {
 			<div class="pos-item-wrapper image-view-item  ${classname}" data-item-code="${escape(item_code)}"> 
 				<a class="grey list-id" data-name="${item_code}" title="${item_title}">
 					<div class="row">
-						<div class="col-xs-4">${item_title}, ${strength},${size}, ${item_type}</div>
+						<div class="col-xs-4">${item_title} ~ strength:${strength}, Size:${size}, ${item_type}</div>
 						<div class="col-xs-2 text-right">${price_list_rate}</div>
 						<div class="col-xs-2 text-center qty-m"><span>${act_qty}<span></div>
 						<div class="col-xs-2 text-center ">${end_of_life}</div>
