@@ -40,7 +40,8 @@ fixtures = [
             [
             'name', 'in',[
                "Item-strength" ,
-               "Item-item_type"
+               "Item-item_type" ,
+               "Item-shelf_area"
             ]]
         ]
     }
