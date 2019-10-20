@@ -1,3 +1,5 @@
+
+
 frappe.pages['point-of-sale'].refresh = function(wrapper) {
 	frappe.call({
         method: "frappe.client.get_value",
@@ -450,9 +452,9 @@ erpnext.pos.PointOfSale = class PointOfSale {
 	set_primary_action_in_modal() {
 		if (!this.frm.msgbox) {
 			this.frm.msgbox = frappe.msgprint(
-				`<a class="btn btn-primary" onclick="cur_frm.print_preview.printit(true)" style="margin-right: 5px;">
+				`<a class="btn btn-primary" onclick="cur_frm.print_preview.printit(true)" style="margin-right: 5px;" id="Print">
 					${__('Print')}</a>
-				<a class="btn btn-default">
+				<a class="btn btn-default" id="New">
 					${__('New')}</a>`
 			);
 
@@ -460,6 +462,7 @@ erpnext.pos.PointOfSale = class PointOfSale {
 				this.frm.msgbox.hide();
 				this.make_new_invoice();
 			});
+			this.wrapper.find('search_field').empty();
 
 		}
 	}
@@ -1314,7 +1317,6 @@ class POSItems {
 	make_fields() {
 		// Search field
 		const me = this;
-		this.pay=this.wrapper.find('num-col.brand-primary');
 		this.search_field = frappe.ui.form.make_control({
 			df: {
 				fieldtype: 'Data',
@@ -1329,9 +1331,14 @@ class POSItems {
 			this.search_field.set_focus();
 			this.search_field.set_value('');
 		});
-		frappe.ui.keys.on('ctrl+z', () => {
-			$('.num-col[data-value="pay"]').click();
-			console.log('click1as');
+		frappe.ui.keys.on('ctrl+enter', () => {
+			$('.num-col.brand-primary').click();
+		});
+		frappe.ui.keys.on('n', () => {
+			$('#New').click();
+		});
+		frappe.ui.keys.on('p', () => {
+			$('#Print').click();
 		});
 		
 		this.search_field.$input.on('input', (e) => {
