@@ -1116,7 +1116,7 @@ class POSCart {
 				</div>
 
 				<div class="rate list-item__content text-right">
-					${rate} ${item.actual_qty}
+					${rate}
 				</div>
 			</div>
 		`;
@@ -1263,24 +1263,23 @@ class POSItems {
 
 			this.init_clusterize();
 			this.bind_events();
-			this.load_items_data();
+			// this.load_items_data();
 		})
 	}
 
-	load_items_data() {
-		// bootstrap with 20 items
-		// this.get_items()
-		// 	.then(({ items }) => {
-		// 		this.all_items = items;
-		// 		this.items = items;
-		// 		this.render_items(items);
-		// 	});
-	}
+	// load_items_data() {
+	// // 	//bootstrap with 20 items
+	// // 	this.get_items()
+	// // 		.then(({ items }) => {
+	// // 			this.all_items = items;
+	// // 			this.items = items;
+	// // 			this.render_items(items);
+	// // 		});
+	// }
 
 	reset_items() {
 		this.wrapper.find('.pos-items').empty();
 		this.init_clusterize();
-		this.load_items_data();
 	}
 
 	make_dom() {
@@ -1292,10 +1291,12 @@ class POSItems {
 				</div>
 			</div>
 			<div class="row">
-                 <div class="col-xs-6" style="color:#fff;font-weight:bold;">Product Name</div>
+                 <div class="col-xs-4" style="color:#fff;font-weight:bold;">Product Name</div>
                  <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Price</div>
                  <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Quantity</div>
                  <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Date Expiry</div>
+                 <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">shelf</div>
+
 			</div>
 			<div class="items-wrapper">
 			</div>
@@ -1313,22 +1314,26 @@ class POSItems {
 	make_fields() {
 		// Search field
 		const me = this;
+		this.pay=this.wrapper.find('num-col.brand-primary');
 		this.search_field = frappe.ui.form.make_control({
 			df: {
 				fieldtype: 'Data',
-				label: __('Search Item'),
+				label: __('Search Item ctr+s'),
 				placeholder: __('Search by item code, serial number, batch no or barcode')
 			},
 			parent: this.wrapper.find('.search-field'),
 			render_input: true,
 		});
 
-		frappe.ui.keys.on('ctrl+i', () => {
+		frappe.ui.keys.on('ctrl+s', () => {
 			this.search_field.set_focus();
 			this.search_field.set_value('');
 		});
-
-
+		frappe.ui.keys.on('ctrl+z', () => {
+			$('.num-col[data-value="pay"]').click();
+			console.log('click1as');
+		});
+		
 		this.search_field.$input.on('input', (e) => {
 			clearTimeout(this.last_search);
 			this.last_search = setTimeout(() => {
@@ -1462,14 +1467,16 @@ class POSItems {
 
 	bind_events() {
 		var me = this;
+		this.items_wrapper = this.wrapper.find('.image-view-row');
 		this.wrapper.on('click', '.pos-item-wrapper', function() {
 			const $item = $(this);
 			const item_code = unescape($item.attr('data-item-code'));
 			me.events.update_cart(item_code, 'qty', '+1');
 			me.reset_search_field();
-
-
 		});
+		
+		// this.items_wrapper = this.wrapper.find('.items-wrapper');
+		// this.items_wrapper.empty();
 
 	}
 
@@ -1511,7 +1518,7 @@ class POSItems {
     		  
  	 
 		const price_list_rate = format_currency(item.price_list_rate, this.currency);
-		const { item_code, item_name, item_image, actual_qty, end_of_life, strength, item_type} = item;
+		const { item_code, item_name, item_image, actual_qty, end_of_life, strength, item_type, size, shelf_area} = item;
 		const item_title = item_name || item_code;
 		const qty = this.get_item_this(item_code,this.frm.doc.pos_profile);
 		var classname = 'qty-normal';
@@ -1528,10 +1535,11 @@ class POSItems {
 			<div class="pos-item-wrapper image-view-item  ${classname}" data-item-code="${escape(item_code)}"> 
 				<a class="grey list-id" data-name="${item_code}" title="${item_title}">
 					<div class="row">
-						<div class="col-xs-6">${item_title}, ${item_type}</div>
+						<div class="col-xs-4">${item_title}, ${strength},${size}, ${item_type}</div>
 						<div class="col-xs-2 text-right">${price_list_rate}</div>
 						<div class="col-xs-2 text-center qty-m"><span>${act_qty}<span></div>
-						<div class="col-xs-2 text-center ">${end_of_life}  </div>
+						<div class="col-xs-2 text-center ">${end_of_life}</div>
+						<div class="col-xs-2 text-center ">${shelf_area} </div>
 					</div>
 				</a> 
 			</div>
@@ -1698,13 +1706,11 @@ class Payment {
 		this.make();
 		this.bind_events();
 		this.set_primary_action();
-
 	}
 
 	open_modal() {
 		this.dialog.show();
 	}
-
 	make() {
 		this.set_flag();
 		this.dialog = new frappe.ui.Dialog({
