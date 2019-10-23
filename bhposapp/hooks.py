@@ -46,8 +46,19 @@ fixtures = [
                "Item-shelf_area"
             ]]
         ]
-    }
-    ];
+    },
+     {
+        "doctype":"Property Setter",
+        "filters":[
+            [
+                'name','in',[
+                  "Item-standard_rate-hidden",
+                  "Item-valuation_rate-hidden",
+                  "Item-opening_stock-hidden"
+                ]]
+          ]
+      }
+];
 
 # Home Pages
 # ----------
