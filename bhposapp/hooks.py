@@ -42,7 +42,6 @@ fixtures = [
         "filters": [
             [
             'name', 'in',[
-               "Item-strength" ,
                "Item-item_type" ,
                "Item-shelf_area"
             ]]
