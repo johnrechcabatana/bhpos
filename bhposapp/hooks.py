@@ -35,7 +35,7 @@ doctype_js = {
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
-
+#fixtures
 fixtures = [
     {
         "doctype": "Custom Field",
@@ -46,8 +46,19 @@ fixtures = [
                "Item-shelf_area"
             ]]
         ]
-    }
-    ];
+    },
+     {
+        "doctype":"Property Setter",
+        "filters":[
+            [
+                'name','in',[
+                  "Item-standard_rate-hidden",
+                  "Item-valuation_rate-hidden",
+                  "Item-opening_stock-hidden"
+                ]]
+          ]
+      }
+];
 
 # Home Pages
 # ----------
