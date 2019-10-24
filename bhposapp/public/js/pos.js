@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-
-
 frappe.pages['point-of-sale'].refresh = function(wrapper) {
 	frappe.call({
         method: "frappe.client.get_value",
@@ -3980,6 +3977,6 @@ class Payment {
 			this.show_paid_amount();
 		}
 	}
-
+}
 }
 }
