@@ -1,3 +1,4 @@
+
 frappe.pages['point-of-sale'].refresh = function(wrapper) {
 	frappe.call({
         method: "frappe.client.get_value",
@@ -1988,6 +1989,7 @@ class Payment {
 	}
 
 }
+
 frappe.pages['point-of-sale'].refresh = function(wrapper) {
 	frappe.call({
         method: "frappe.client.get_value",
@@ -3525,9 +3527,7 @@ class POSItems {
         return generic;
 
 	} 
-	get_item_html(item) {
-    		  
- 	 
+	get_item_html(item) { 	 
 		const price_list_rate = format_currency(item.price_list_rate, this.currency);
 		const { item_code, item_name, item_image, actual_qty, end_of_life, item_type, size, shelf_area} = item;
 		const item_title = item_name || item_code;
