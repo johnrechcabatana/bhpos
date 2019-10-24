@@ -1989,10 +1989,7 @@ class Payment {
 	}
 
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> cb65749595f4a04ada51f3e2a35c79bf2111f075
 frappe.pages['point-of-sale'].refresh = function(wrapper) {
 	frappe.call({
         method: "frappe.client.get_value",
