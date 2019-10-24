@@ -9,3 +9,8 @@ def get_query(item_code,warehouse):
 	#  			filters = filters, group_by = "item_code");	
 	res = frappe.db.sql(""" SELECT  item_code,  sum(actual_qty) as actual_qty FROM `tabBin` WHERE warehouse =%s and item_code =%s GROUP BY item_code""", (whouse, item_code), as_dict=1);	
 	return res; 
+
+@frappe.whitelist()
+def get_item_group(item_code):
+	items_data = frappe.db.sql(""" SELECT item_group as generic_name FROM `tabItem` WHERE item_code =%s""", (item_code), as_dict=1);
+	return items_data;
