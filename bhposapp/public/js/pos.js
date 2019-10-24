@@ -1528,8 +1528,14 @@ class POSItems {
 		const { item_code, item_name, item_image, actual_qty, end_of_life, item_type, size, shelf_area} = item;
 		const item_title = item_name || item_code;
 		const qty = this.get_item_this(item_code,this.frm.doc.pos_profile);
+		var test="";
 		var classname = 'qty-normal';
 		var act_qty = 0;
+		var today = new Date();
+		var mm = today.getMonth();
+        var yyyy = today.getFullYear();
+        var itemYear = end_of_life.split('-');
+
 		if (typeof qty === "undefined") {
 				classname = 'qty-danger';  
 		}else{
@@ -1537,15 +1543,31 @@ class POSItems {
 				classname = 'qty-warning';
 			}  
 			act_qty = qty.actual_qty;
-		} 
+		}
+		if(yyyy == itemYear[0])
+		{
+			var initial_month = itemYear[1] - mm;
+			if(initial_month <= 6)
+			{
+				test = "#f1ff42";
+			}
+			else
+			{
+				test ="";
+			}
+		}
+		else
+		{
+			test = "";
+		}
 		return `
 			<div class="pos-item-wrapper image-view-item  ${classname}" data-item-code="${escape(item_code)}"> 
 				<a class="grey list-id" data-name="${item_code}" title="${item_title}">
-					<div class="row">
+					<div class="row" style="color:${test}">
 						<div class="col-xs-4">${item_title} ~Dosage:${size}, ${item_type}</div>
 						<div class="col-xs-2 text-right">${price_list_rate}</div>
 						<div class="col-xs-2 text-center qty-m"><span>${act_qty}<span></div>
-						<div class="col-xs-2 text-center ">${end_of_life}</div>
+						<div class="col-xs-2 text-center" > ${end_of_life}</div>
 						<div class="col-xs-2 text-center ">${shelf_area} </div>
 					</div>
 				</a> 

@@ -55,7 +55,29 @@ fixtures = [
                 'name','in',[
                   "Item-standard_rate-hidden",
                   "Item-valuation_rate-hidden",
-                  "Item-opening_stock-hidden"
+                  "Item-opening_stock-hidden",
+                  "Item-valuation_method-hidden",
+                  "Item-default_material_request_type-hidden",
+                  "Item-hub_publishing_sb-hidden",
+                  "Item-website_section-hidden",
+                  "Item-manufacturing-hidden",
+                  "Item-inspection_criteria-hidden",
+                  "Item-customer_details-hidden",
+                  "Item-deferred_expense_section-hidden",
+                  "Item-deferred_revenue_account-hidden",
+                  "Item-deferred_revenue-hidden",
+                  "Item-sales_details-hidden",
+                  "Item-foreign_trade_details-hidden",
+                  "Item-supplier_details-collapsible",
+                  "Item-purchase_details-hidden",
+                  "Item-defaults-hidden",
+                  "Item-variants_section-hidden",
+                  "Item-serial_nos_and_batches-hidden",
+                  "Item-warranty_period-hidden",
+                  "Item-section_break_11-hidden",
+                  "Item-purchase_uom-hidden",
+                  "Item-weight_uom-hidden",
+                  "Item-weight_per_unit-hidden"
                 ]]
           ]
       }
