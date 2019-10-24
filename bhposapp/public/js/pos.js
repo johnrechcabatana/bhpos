@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 
 frappe.pages['point-of-sale'].refresh = function(wrapper) {
 	frappe.call({
@@ -1992,10 +1990,6 @@ class Payment {
 
 }
 
-	
-=======
-
-
 frappe.pages['point-of-sale'].refresh = function(wrapper) {
 	frappe.call({
         method: "frappe.client.get_value",
@@ -3986,5 +3980,4 @@ class Payment {
 		}
 	}
 
-}
 }
