@@ -1294,11 +1294,12 @@ class POSItems {
 				</div>
 			</div>
 			<div class="row">
-                 <div class="col-xs-4" style="color:#fff;font-weight:bold;">Product Name</div>
+                 <div class="col-xs-4" style="color:#fff;font-weight:bold;">Item Name</div>
+                 <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Dosage/Weight</div>
                  <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Price</div>
-                 <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Quantity</div>
-                 <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Date Expiry</div>
-                 <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">shelf</div>
+                 <div class="col-xs-1" style="text-align:ceter;color:#fff;font-weight:bold;">Qty</div>
+                 <div class="col-xs-2" style="text-align:ceter;color:#fff;font-weight:bold;">Expiry</div>
+                 <div class="col-xs-1" style="text-align:ceter;color:#fff;font-weight:bold;">Shelf</div>
 
 			</div>
 			<div class="items-wrapper">
@@ -1355,7 +1356,7 @@ class POSItems {
 		this.item_group_field = frappe.ui.form.make_control({
 			df: {
 				fieldtype: 'Link',
-				label: 'Item Group',
+				label: 'Generic Name',
 				options: 'Item Group',
 				default: me.parent_item_group,
 				onchange: () => {
@@ -1520,7 +1521,22 @@ class POSItems {
         return company;
 
 	}
-	 
+	get_item_this_group(item_code){
+		var generic = ""; 
+			frappe.call({
+				method: "bhposapp.public.py.test.get_item_group",
+				freeze: true,
+				args: {
+					"item_code":item_code 
+				},async: false,
+                callback: function(r) {
+                        generic = r.message[0];
+                        
+                }
+        })
+        return generic;
+
+	} 
 	get_item_html(item) {
     		  
  	 
@@ -1530,6 +1546,9 @@ class POSItems {
 		const qty = this.get_item_this(item_code,this.frm.doc.pos_profile);
 		var classname = 'qty-normal';
 		var act_qty = 0;
+
+	    var generic = this.get_item_this_group(item_code).generic_name;
+
 		if (typeof qty === "undefined") {
 				classname = 'qty-danger';  
 		}else{
@@ -1542,11 +1561,14 @@ class POSItems {
 			<div class="pos-item-wrapper image-view-item  ${classname}" data-item-code="${escape(item_code)}"> 
 				<a class="grey list-id" data-name="${item_code}" title="${item_title}">
 					<div class="row">
-						<div class="col-xs-4">${item_title} ~Dosage:${size}, ${item_type}</div>
-						<div class="col-xs-2 text-right">${price_list_rate}</div>
-						<div class="col-xs-2 text-center qty-m"><span>${act_qty}<span></div>
+						<div class="col-xs-4">
+						(${item_title}) ${generic} ${item_type}
+						</div>
+						<div class="col-xs-2">${size}</div>
+						<div class="col-xs-2 text-center">${price_list_rate}</div>
+						<div class="col-xs-1 text-center qty-m"><span>${act_qty}<span></div>
 						<div class="col-xs-2 text-center ">${end_of_life}</div>
-						<div class="col-xs-2 text-center ">${shelf_area} </div>
+						<div class="col-xs-1 text-center ">${shelf_area} </div>
 					</div>
 				</a> 
 			</div>
