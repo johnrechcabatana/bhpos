@@ -12,5 +12,6 @@ frappe.ui.form.on('Item', {
         var days = time / (1000 * 3600 * 24); 
         var num_of_days=parseInt(days);
         cur_frm.set_value("shelf_life_in_days",num_of_days);
+        console.log("test");
     }
 });

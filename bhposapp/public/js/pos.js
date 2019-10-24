@@ -1546,7 +1546,7 @@ class POSItems {
 		if(yyyy == itemYear[0])
 		{
 			var initial_month = itemYear[1] - mm;
-			if(initial_month <= 6)
+			if(initial_month <= 3)
 			{
 				warning = "#f1ff42";
 			}
