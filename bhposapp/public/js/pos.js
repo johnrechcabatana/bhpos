@@ -3980,6 +3980,6 @@ class Payment {
 			this.show_paid_amount();
 		}
 	}
-
+}
 }
 }
