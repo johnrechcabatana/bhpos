@@ -23,9 +23,8 @@ web_include_css = "/assets/bhposapp/css/style.css"
 # web_include_js = "/assets/bhposapp/css/custom.css"
 
 # include js in page
-page_js = {"point-of-sale" : "public/js/pos.js",
-           "pos":"public/js/pos.js"
-           }
+# page_js = {"point-of-sale" : "public/js/pos.js"
+#            }
 
 # include js in doctype views
 doctype_js = {
